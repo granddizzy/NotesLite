@@ -31,14 +31,16 @@ def start():
                 view.show_notes(model.get_note_list())
             case 5:
                 # изменить заметку
-                view.show_notes(model.get_note_list())
-                id = view.select_note(model.get_notes_ids())
-                if id:
-                    note = model.get_note(id)
-                    view.show_note(str(note))
-                    note.name, note.text = view.input_note()
-                    model.update(note)
-                    view.show_notes(model.get_note_list())
+                notes_list = model.get_note_list()
+                view.show_notes(notes_list)
+                if notes_list:
+                    id = view.select_note(model.get_notes_ids())
+                    if id:
+                        note = model.get_note(id)
+                        view.show_note(str(note))
+                        note.name, note.text = view.input_note()
+                        model.update(note)
+                        view.show_notes(model.get_note_list())
             case 6:
                 # удалить заметку
                 notes_list = model.get_note_list()
