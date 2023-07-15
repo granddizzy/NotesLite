@@ -24,7 +24,7 @@ def input_date() -> str | None:
             return date
 
 
-def show_find_notes(notes: list[tuple], message: str):
+def show_find_notes(notes: list[str], message: str):
     if notes:
         print("\n" + "=" * 83)
         for note in notes:
@@ -45,7 +45,7 @@ def show_notes(notes: list):
     print("\n" + "=" * 72)
     if len(notes) > 0:
         for note in notes:
-            print(f"{str(note.id):<3} | {note.name:<20} | {note.date:<20}")
+            print(f"{str(note.id):<3} | {note.name:<20} | {note.date.split('.')[0]:<20}")
     else:
         print(tf.no_notes)
     print("=" * 72 + "\n")
