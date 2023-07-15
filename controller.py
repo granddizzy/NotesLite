@@ -41,12 +41,14 @@ def start():
                     view.show_notes(model.get_note_list())
             case 6:
                 # удалить заметку
-                view.show_notes(model.get_note_list())
-                id = view.select_note(model.get_notes_ids())
-                if id:
-                    note = model.get_note(id)
-                    model.delete(id)
-                    view.print_message(tf.sucessfull_delete_note.replace("%name%", note.name))
-                    view.show_notes(model.get_note_list())
+                notes_list = model.get_note_list()
+                view.show_notes(notes_list)
+                if notes_list:
+                    id = view.select_note(model.get_notes_ids())
+                    if id:
+                        note = model.get_note(id)
+                        model.delete(id)
+                        view.print_message(tf.sucessfull_delete_note.replace("%name%", note.name))
+                        view.show_notes(model.get_note_list())
             case _:
                 break
