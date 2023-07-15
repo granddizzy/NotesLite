@@ -14,6 +14,7 @@ def input_choice() -> int | None:
         elif num == "":
             return None
 
+
 def input_date() -> str | None:
     while True:
         date = input(tf.input_date)
@@ -23,11 +24,11 @@ def input_date() -> str | None:
             return date
 
 
-def show_notes_list(notes: list[tuple], message: str):
+def show_find_notes(notes: list[tuple], message: str):
     if notes:
         print("\n" + "=" * 83)
         for note in notes:
-            print(note[0])
+            print(note)
 
         print("=" * 83 + "\n")
     else:
@@ -40,7 +41,7 @@ def show_note(note: str):
     print("=" * 83 + "\n")
 
 
-def show_book_notes(notes: list):
+def show_notes(notes: list):
     print("\n" + "=" * 72)
     if len(notes) > 0:
         for note in notes:
@@ -54,34 +55,6 @@ def print_message(message: str):
     print("\n" + "=" * len(message))
     print(message)
     print("=" * len(message) + "\n")
-
-
-def show_books(books: list):
-    if len(books) == 0:
-        print_message(tf.no_note_books)
-    else:
-        print("\n" + "=" * 72)
-        for book in books:
-            print(book)
-        print("=" * 72 + "\n")
-
-
-def select_book(books_ids):
-    while True:
-        num = input(tf.select_book)
-        if num.isdigit() and int(num) in books_ids:
-            return int(num)
-        elif num == "":
-            return None
-
-
-def input_book():
-    while True:
-        if len(name := input(tf.input_book_name)) > 0:
-            break
-
-    comment = input(tf.input_book_comment)
-    return name, comment
 
 
 def input_note():

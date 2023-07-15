@@ -2,8 +2,9 @@ import sqlite3
 
 
 class ClassDB:
-    def __init__(self, db_path: str = "Database/book.db"):
+    def __init__(self, db_path: str = "Database/notes.db"):
         self.db_path = db_path
+        self.create_tables()
 
     @property
     def connection(self):
@@ -88,12 +89,12 @@ class ClassDB:
         query = f"""INSERT INTO {table} ({', '.join(fields.keys()) if len(fields) > 1 else fields[0]}) VALUES ({', '.join(["?" for _ in fields.keys()])})"""
         return self.execute(query, tuple(fields.values()), commit=True)
 
+    def create_tables(self):
+        query = """CREATE TABLE IF NOT EXISTS books (book_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  name VARCHAR, comment VARCHAR)"""
+        self.execute(query)
 
-def create_tables(db_: ClassDB):
-    query = """CREATE TABLE IF NOT EXISTS books (book_id INTEGER PRIMARY KEY AUTOINCREMENT,
-              name VARCHAR, comment VARCHAR)"""
-    db_.execute(query)
+        query = """CREATE TABLE IF NOT EXISTS notes (note_id INTEGER PRIMARY KEY AUTOINCREMENT,
+              book_id INTEGER, name VARCHAR, text VARCHAR, date TEXT)"""
+        self.execute(query)
 
-    query = """CREATE TABLE IF NOT EXISTS notes (note_id INTEGER PRIMARY KEY AUTOINCREMENT,
-          book_id INTEGER, name VARCHAR, text VARCHAR, date TEXT)"""
-    db_.execute(query)
