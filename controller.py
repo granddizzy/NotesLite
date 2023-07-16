@@ -21,7 +21,6 @@ def start():
                         note = model.get_note(id)
                         view.show_note(str(note))
             case 3:
-                pass
                 # найти заметку
                 view.show_find_notes(
                     [str(note) for note in model.find_notes(view.input_pattern())], message=tf.no_find_notes)
