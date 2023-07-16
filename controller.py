@@ -37,7 +37,14 @@ def start():
                     if id:
                         note = model.get_note(id)
                         view.show_note(str(note))
-                        note.name, note.text = view.input_note()
+                        name, text = view.change_note()
+
+                        if name:
+                            note.name = name
+
+                        if text:
+                            note.text = text
+
                         model.update(note)
                         view.show_notes(model.get_note_list())
             case 6:

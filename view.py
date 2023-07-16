@@ -68,6 +68,12 @@ def input_note():
 
     return name, text
 
+def change_note():
+    name = input(tf.input_change_note_name).replace(";", "").strip()
+    text = input(tf.input_change_note_text).replace(";", "").strip()
+
+    return name, text
+
 
 def select_note(notes_ids):
     while True:
