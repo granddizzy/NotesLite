@@ -59,11 +59,11 @@ def print_message(message: str):
 
 def input_note():
     while True:
-        if len(name := input(tf.input_note_name)) > 0:
+        if len(name := input(tf.input_note_name).replace(";", "")) > 0:
             break
 
     while True:
-        if len(text := input(tf.input_note_text).replace(" ", "")) > 0:
+        if len(text := input(tf.input_note_text).replace(";", "")) > 0:
             break
 
     return name, text
