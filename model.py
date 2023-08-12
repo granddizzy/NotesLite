@@ -10,6 +10,12 @@ if not os.path.exists(db_path):
 
 
 def find_notes(pattern) -> list[Note]:
+    """
+    возвращает список заметок в которых заголовок или текст содержит заданный шаблон
+    :param pattern:
+    :return:
+    """
+
     res = []
     with open(db_path, "r", encoding="UTF-8") as file:
         data = file.readlines()
@@ -24,6 +30,12 @@ def find_notes(pattern) -> list[Note]:
 
 
 def get_note_list(date: str | None = None) -> list[Note]:
+    """
+    возвращает список заметок определенную дату или все если дата не указана
+    :param date:
+    :return:
+    """
+
     res = []
     with open(db_path, "r", encoding="UTF-8") as file:
         data = file.readlines()
@@ -38,8 +50,13 @@ def get_note_list(date: str | None = None) -> list[Note]:
 
     return res
 
-1
+
 def get_notes_ids() -> list[int]:
+    """
+    возвращает список идентификаторов заметок
+    :return:
+    """
+
     res = []
     with open(db_path, "r", encoding="UTF-8") as file:
         data = file.readlines()
@@ -52,6 +69,12 @@ def get_notes_ids() -> list[int]:
 
 
 def get_note(id: int) -> Note | None:
+    """
+    возвращает заметку с заданным ID
+    :param id:
+    :return:
+    """
+
     with open(db_path, "r", encoding="UTF-8") as file:
         data = file.readlines()
 
@@ -64,11 +87,23 @@ def get_note(id: int) -> Note | None:
 
 
 def add_note(name: str, text: str):
+    """
+    добавляет заметку
+    :param name:
+    :param text:
+    :return:
+    """
+
     with open(db_path, "a", encoding="UTF-8") as file:
         print(str(get_new_id()) + ";" + name + ";" + text + ";" + str(datetime.now()), file=file)
 
 
 def get_new_id() -> int:
+    """
+    возвращает следующий идентификатор для заметки
+    :return:
+    """
+
     with open(db_path, "r", encoding="UTF-8") as file:
         date = file.readlines()
         if len(date) == 0:
@@ -78,6 +113,12 @@ def get_new_id() -> int:
 
 
 def delete(id: int):
+    """
+    удаляет заметку с заданным ID
+    :param id:
+    :return:
+    """
+
     if not id:
         return
 
@@ -97,6 +138,12 @@ def delete(id: int):
 
 
 def update(note: Note):
+    """
+    обновляет данные заметки
+    :param note: 
+    :return:
+    """
+
     with open(db_path, "r", encoding="UTF-8") as file:
         data = file.readlines()
 
